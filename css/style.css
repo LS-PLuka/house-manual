@@ -37,7 +37,6 @@ html {
 
 body {
   margin: 0;
-  min-width: 20rem;
   background: var(--color-background);
 }
 
@@ -72,7 +71,7 @@ li {
 }
 
 .container {
-  width: min(100% - 2.5rem, var(--content-width));
+  width: min(100% - 2rem, var(--content-width));
   margin-inline: auto;
 }
 
@@ -162,16 +161,14 @@ details[open] {
 
 summary {
   position: relative;
-  display: flex;
-  min-height: 4rem;
+  display: grid;
+  min-height: 5.25rem;
+  grid-template-columns: 2.25rem minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
   gap: var(--space-3);
-  padding: 1.15rem var(--space-3);
+  padding: var(--space-3);
   color: var(--color-text);
   cursor: pointer;
-  font-size: 1.075rem;
-  font-weight: 680;
   list-style: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -183,7 +180,6 @@ summary::-webkit-details-marker {
 summary::after {
   width: 0.55rem;
   height: 0.55rem;
-  flex: 0 0 auto;
   border-inline-end: 0.125rem solid var(--color-primary);
   border-block-end: 0.125rem solid var(--color-primary);
   content: "";
@@ -199,6 +195,39 @@ details[open] summary::after {
   transform: rotate(225deg) translate(-0.125rem, -0.125rem);
 }
 
+.category-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0.45rem;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.category-heading {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.category-name {
+  font-size: 1.075rem;
+  font-weight: 680;
+  line-height: 1.3;
+}
+
+.category-description {
+  color: var(--color-muted);
+  font-size: 0.825rem;
+  font-weight: 450;
+  line-height: 1.35;
+}
+
+details[open] .category-icon {
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+
 summary:focus-visible,
 a:focus-visible {
   z-index: 1;
@@ -207,7 +236,7 @@ a:focus-visible {
 }
 
 .category-content {
-  padding: 0 var(--space-3) var(--space-5);
+  padding: 0 var(--space-3) var(--space-5) 4.25rem;
   color: var(--color-muted);
 }
 
@@ -249,12 +278,15 @@ a:focus-visible {
 
   .important,
   .help,
-  summary,
-  .category-content {
+  summary {
     padding-inline: var(--space-5);
   }
 
   summary {
-    min-height: 4.5rem;
+    min-height: 5.5rem;
+  }
+
+  .category-content {
+    padding-inline: 5.5rem var(--space-5);
   }
 }

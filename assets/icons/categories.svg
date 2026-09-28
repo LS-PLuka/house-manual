@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="bed" viewBox="0 0 24 24">
+    <path d="M4 18v-8m16 8v-5a2 2 0 0 0-2-2H9a3 3 0 0 0-3 3v1m-2 0h16M7 11V8h4a2 2 0 0 1 2 2v1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+  </symbol>
+  <symbol id="bathroom" viewBox="0 0 24 24">
+    <path d="M5 12V7a3 3 0 0 1 6 0m-7 5h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5Zm3 7-1 2m11-2 1 2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+  </symbol>
+  <symbol id="leaf" viewBox="0 0 24 24">
+    <path d="M19.5 4.5C12 4.5 6 7.5 6 13a5 5 0 0 0 5 5c5.5 0 8.5-6 8.5-13.5ZM4.5 20c2-4 5-7 10-10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+  </symbol>
+  <symbol id="shower" viewBox="0 0 24 24">
+    <path d="M5 8a5 5 0 0 1 10 0m-4 0h8v2h-8Zm1 5v1m3-1v2m3-2v1m-6 4v1m3-1v2m3-2v1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+  </symbol>
+  <symbol id="laundry" viewBox="0 0 24 24">
+    <path d="M5 5h14l-1 14H6Zm1 4h12M9 5l1 4m5-4-1 4m-5 4c1.5 0 1.5 2 3 2s1.5-2 3-2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+  </symbol>
+  <symbol id="trash" viewBox="0 0 24 24">
+    <path d="M5 7h14M9 7V4h6v3m2 0-1 13H8L7 7m4 4v5m3-5v5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+  </symbol>
+  <symbol id="people" viewBox="0 0 24 24">
+    <path d="M9 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm6-1a2.5 2.5 0 1 0 0-5m-11 13a5 5 0 0 1 10 0m1-5a4 4 0 0 1 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+  </symbol>
+  <symbol id="key" viewBox="0 0 24 24">
+    <path d="M14 8a5 5 0 1 0-3.5 4.8L20 22v-4h-3v-3h-3l-1.2-1.2A5 5 0 0 0 14 8Zm-7 0h.01" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+  </symbol>
+</svg>

@@ -1,1 +1,1 @@
-// Interações adicionais serão incluídas apenas quando forem necessárias.
+// Os accordions usam <details> e <summary>; não precisam de JavaScript.
