@@ -15,7 +15,7 @@ O projeto não utiliza dependências externas, gerenciador de pacotes ou sistema
 ```text
 index.html          Conteúdo e estrutura da página
 css/style.css       Estilos globais e responsivos
-js/main.js          Espaço reservado para interações necessárias
+js/main.js          Espaço reservado, não carregado enquanto não houver interação necessária
 assets/icons/       Ícones locais futuros
 favicon.svg         Ícone do site
 AGENTS.md           Diretrizes operacionais do projeto
