@@ -132,6 +132,25 @@ As fontes são self-hosted em `assets/fonts/` (arquivos `.woff2`, subset latin, 
 
 Ícones devem ajudar a reconhecer categorias, acompanhar texto, ter estilo consistente e discreto e nunca ser a única forma de comunicação. Quando necessários, prefira SVGs pequenos, locais e otimizados. Não carregue uma biblioteca completa para usar poucos símbolos.
 
+### Motion
+
+Toda duração e easing vem dos tokens no `:root` de `css/style.css`; nenhum valor fixo fora deles (derive com `calc()` quando preciso):
+
+- `--dur-rapida` (160ms): micro-interações e feedback de `:active`;
+- `--dur-base` (300ms): hover, foco, estados e accordion;
+- `--dur-lenta` (600ms): entradas e reveal;
+- `--atraso-escalonado` (60ms): stagger entre elementos que entram juntos;
+- `--ease-saida`: `cubic-bezier(0.22, 1, 0.36, 1)`.
+
+Regras:
+
+- animações executam uma única vez (entrada do hero no carregamento, reveal ao rolar com `unobserve`); nenhum loop infinito;
+- anime apenas `transform` e `opacity`; transições de cor são permitidas; a exceção de layout é o `block-size` do accordion via `::details-content`, dentro de `@supports`;
+- `prefers-reduced-motion: reduce` é obrigatório: sem animações, transições, reveal, stagger ou scale, e todo o conteúdo visível imediatamente;
+- progressive enhancement: o estado escondido (`.oculto`) só existe quando o JS roda e só é aplicado a elementos fora do viewport na inicialização; sem JS ou sem `IntersectionObserver`, tudo aparece normalmente;
+- o accordion não usa JS; sem suporte a `::details-content`/`interpolate-size`, abre e fecha instantaneamente;
+- o foco por teclado deve permanecer visível durante e após as animações.
+
 ## Acessibilidade
 
 Considere acessibilidade desde o início:

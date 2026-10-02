@@ -24,7 +24,7 @@ A página usa a identidade visual da marca **rearq_**, de Gláucia Montes. As re
 ```text
 index.html          Conteúdo e estrutura da página
 css/style.css       Estilos globais e responsivos
-js/main.js          Espaço reservado, não carregado enquanto não houver interação necessária
+js/main.js          Reveal dos blocos ao rolar (IntersectionObserver), carregado com defer
 assets/icons/       Ícones das categorias (sprite SVG)
 assets/fonts/       Fontes .woff2 self-hosted e licenças OFL
 docs/brand/         Referências visuais da marca
