@@ -89,30 +89,46 @@ Se uma funcionalidade adicional parecer útil, apresente primeiro a sugestão e 
 
 ## Direção visual
 
-A interface deve evocar uma **casa caiçara contemporânea**: clara, leve, arejada, acolhedora, natural, simples, moderna e sutilmente artesanal. A hospedagem é predominantemente branca e possui espaços abertos, flores, vegetação, pranchas, remos e referências ao litoral.
+### Uso da marca
+
+A marca rearq_ é usada apenas como identidade visual. A finalidade do site é exclusivamente o manual de regras de hospedagem. Nunca use textos, slogans ou palavras-chave do board da marca relacionados a cerâmica, arquitetura ou ao atelier como conteúdo do site.
+
+### Identidade
+
+A interface usa a identidade visual da marca **rearq_**, de Gláucia Montes. As referências oficiais estão em `docs/brand/` (`board-identidade.jpeg` e `placa.jpeg`). O visual é arquitetônico, essencial e material: concreto, cerâmica, papel kraft e a placa de aço corten iluminada à noite.
 
 A identidade deve vir principalmente de cores, tipografia, espaçamento, composição, pequenos detalhes gráficos e ícones discretos. Evite aparência de landing page comercial, hotel de luxo, resort, dashboard, SaaS, aplicativo complexo, site corporativo ou template genérico de IA.
 
-Evite também excesso de cards e sombras, glassmorphism, gradientes azul/roxo, decoração tropical exagerada, ondas gigantes, coqueiros como clichê, elementos decorativos sem função, animações gratuitas e muitos valores diferentes de `border-radius`.
+Evite também sombras pesadas, glassmorphism, gradientes, glow do tipo neon, elementos decorativos sem função, animações gratuitas e cantos arredondados. Use um único raio de borda pequeno (`--radius-small`, 3px).
 
-### Paleta provisória
+Elementos da marca já definidos:
 
-Quando a interface for implementada, centralize a paleta em CSS Custom Properties:
+- hero em `--carvao` com o símbolo, o logotipo `rearq_`, a localização da hospedagem e a assinatura, em tom terracota/âmbar e com glow quente discreto;
+- `<h1>` "Manual da hospedagem" logo abaixo do hero;
+- símbolo como SVG inline (círculo de traço fino aberto por uma fratura em zigue-zague), com `stroke="currentColor"`;
+- categorias como cards de fundo areia translúcido e borda fina;
+- faixa `--terracota` com palavras ligadas à estadia em uppercase, separadas por "•";
+- rodapé em `--carvao`.
 
-- fundo quente: `#FAF9F5`;
-- superfícies: `#FFFFFF`;
-- azul principal: `#397C8C`;
-- azul claro: `#DCECEF`;
-- verde vegetal: `#66856B`;
-- areia: `#E9DFC9`;
-- terracota discreto: `#C7795B`;
-- texto principal: `#263238`.
+### Paleta
 
-As cores são provisórias e devem ser fáceis de trocar posteriormente.
+Centralize todas as cores em CSS Custom Properties no `:root` de `css/style.css`. Nenhuma cor deve ficar fixa fora dessas variáveis; tons derivados usam `color-mix()` a partir delas.
+
+- terracota: `#B56D52`;
+- areia: `#D8C5AE`;
+- cinza: `#BFC0BC`;
+- carvão: `#2C2C2C`;
+- fundo: `#F2EEE8`.
+
+O texto corrido usa `--carvao` sobre fundo claro. `--terracota` é reservado a títulos, ícones, bordas e destaques, nunca a texto de parágrafo.
 
 ### Tipografia e ícones
 
-Priorize fontes do sistema. Não adicione Google Fonts ou fontes externas apenas por estética.
+As fontes são self-hosted em `assets/fonts/` (arquivos `.woff2`, subset latin, carregados com `@font-face` e `font-display: swap`), sem CDN externo. Inclua apenas os pesos usados e mantenha as licenças OFL junto aos arquivos.
+
+- Cormorant Garamond: logotipo e títulos;
+- Montserrat: corpo e texto de apoio; labels e subtítulos em uppercase pequeno com letter-spacing ampliado;
+- Allura: exclusivamente para a assinatura "gláucia montes".
 
 Ícones devem ajudar a reconhecer categorias, acompanhar texto, ter estilo consistente e discreto e nunca ser a única forma de comunicação. Quando necessários, prefira SVGs pequenos, locais e otimizados. Não carregue uma biblioteca completa para usar poucos símbolos.
 
