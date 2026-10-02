@@ -57,6 +57,31 @@
   --space-4: 1.5rem;
   --space-5: 2.25rem;
   --space-6: 3.5rem;
+
+  --dur-rapida: 160ms;
+  --dur-base: 300ms;
+  --dur-lenta: 600ms;
+  --atraso-escalonado: 60ms;
+  --ease-saida: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes desenhar {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes surgir {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes revelar {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
 }
 
 *,
@@ -115,13 +140,26 @@ li {
 }
 
 .hero {
+  position: relative;
+  overflow: hidden;
   padding: clamp(3rem, 14vw, 5rem) var(--space-3) clamp(2.75rem, 12vw, 4.5rem);
   background: var(--carvao);
   color: var(--ambar);
   text-align: center;
 }
 
+.hero::before {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 55% 50% at 50% 45%, var(--brilho), transparent 75%);
+  content: "";
+  opacity: 0.4;
+  pointer-events: none;
+  animation: surgir var(--dur-base) var(--ease-saida) calc(var(--dur-lenta) * 1.5) backwards;
+}
+
 .brand {
+  position: relative;
   display: grid;
   justify-items: center;
 }
@@ -138,6 +176,11 @@ li {
   filter: drop-shadow(0 0 0.35rem var(--brilho));
 }
 
+.brand-symbol path {
+  stroke-dasharray: 1;
+  animation: desenhar calc(var(--dur-lenta) * 1.5) var(--ease-saida) backwards;
+}
+
 .brand-logo {
   padding-inline-start: var(--tracking-logo);
   font-family: var(--font-title);
@@ -146,6 +189,7 @@ li {
   letter-spacing: var(--tracking-logo);
   line-height: 1;
   text-shadow: 0 0 0.4em var(--brilho);
+  animation: surgir var(--dur-lenta) var(--ease-saida) var(--dur-base) backwards;
 }
 
 .brand .location {
@@ -156,6 +200,7 @@ li {
   line-height: 1.6;
   text-transform: uppercase;
   text-shadow: 0 0 0.6em var(--brilho);
+  animation: surgir var(--dur-lenta) var(--ease-saida) calc(var(--dur-base) + var(--atraso-escalonado) * 2) backwards;
 }
 
 .brand-signature {
@@ -164,10 +209,15 @@ li {
   font-size: clamp(2rem, 9vw, 2.5rem);
   line-height: 1.2;
   text-shadow: 0 0 0.4em var(--brilho);
+  animation: surgir var(--dur-lenta) var(--ease-saida) calc(var(--dur-base) + var(--atraso-escalonado) * 4) backwards;
 }
 
 .intro {
   padding-block: clamp(2.75rem, 12vw, 4.5rem) 0;
+}
+
+.intro h1 {
+  animation: revelar var(--dur-base) var(--ease-saida) var(--dur-base) backwards;
 }
 
 .introduction,
@@ -179,6 +229,7 @@ li {
   margin-block-end: 0;
   font-size: clamp(1rem, 4.2vw, 1.1rem);
   line-height: 1.65;
+  animation: revelar var(--dur-base) var(--ease-saida) calc(var(--dur-base) + var(--atraso-escalonado)) backwards;
 }
 
 main {
@@ -230,6 +281,7 @@ details {
   border: var(--border-thin) solid var(--borda);
   border-radius: var(--radius-small);
   background: var(--superficie);
+  transition: border-color var(--dur-base) var(--ease-saida);
 }
 
 details[open] {
@@ -250,6 +302,10 @@ summary {
   list-style: none;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  transition:
+    color var(--dur-base) var(--ease-saida),
+    background-color var(--dur-base) var(--ease-saida),
+    transform var(--dur-rapida) var(--ease-saida);
 }
 
 summary::-webkit-details-marker {
@@ -263,7 +319,7 @@ summary::after {
   border-block-end: 0.125rem solid var(--terracota);
   content: "";
   transform: rotate(45deg) translate(-0.125rem, -0.125rem);
-  transition: transform 160ms ease;
+  transition: transform var(--dur-rapida) var(--ease-saida);
 }
 
 details[open] summary {
@@ -278,6 +334,7 @@ details[open] summary::after {
   width: 2rem;
   height: 2rem;
   color: var(--terracota);
+  transition: transform var(--dur-base) var(--ease-saida);
 }
 
 .category-heading {
@@ -304,6 +361,14 @@ a:focus-visible {
   z-index: 1;
   outline: 0.1875rem solid var(--carvao);
   outline-offset: 0.1875rem;
+}
+
+summary:focus-visible {
+  color: var(--terracota-escuro);
+}
+
+details:has(> summary:focus-visible) {
+  border-color: var(--terracota);
 }
 
 .category-content {
@@ -344,6 +409,9 @@ a:focus-visible {
   text-align: center;
   text-decoration: none;
   touch-action: manipulation;
+  transition:
+    background-color var(--dur-base) var(--ease-saida),
+    transform var(--dur-rapida) var(--ease-saida);
 }
 
 .contact-placeholder {
@@ -401,6 +469,15 @@ a:focus-visible {
 @media (hover: hover) {
   summary:hover {
     background: var(--superficie-forte);
+    color: var(--terracota-escuro);
+  }
+
+  details:has(> summary:hover) {
+    border-color: var(--terracota);
+  }
+
+  summary:hover .category-icon {
+    transform: translateX(0.125rem);
   }
 
   .contact-action:hover {
@@ -410,20 +487,97 @@ a:focus-visible {
 
 summary:active {
   background: var(--superficie-forte);
+  transform: scale(0.99);
 }
 
 .contact-action:active {
   background: var(--terracota-escuro);
+  transform: scale(0.97);
 }
 
 .contact-action:focus-visible {
+  background: var(--terracota-escuro);
   outline-color: var(--carvao);
   outline-offset: 0.25rem;
+}
+
+.oculto {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.revelado {
+  animation: revelar var(--dur-lenta) var(--ease-saida) calc(var(--ordem, 0) * var(--atraso-escalonado)) backwards;
+}
+
+.brand-values li:nth-child(2) {
+  --item: 1;
+}
+
+.brand-values li:nth-child(3) {
+  --item: 2;
+}
+
+.brand-values li:nth-child(4) {
+  --item: 3;
+}
+
+.page-footer.revelado li {
+  animation: surgir var(--dur-lenta) var(--ease-saida) calc(var(--item, 0) * var(--atraso-escalonado)) backwards;
+}
+
+.page-footer.revelado p {
+  animation: surgir var(--dur-lenta) var(--ease-saida) calc(var(--atraso-escalonado) * 4 + var(--dur-base)) backwards;
+}
+
+@supports (interpolate-size: allow-keywords) and selector(::details-content) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+
+  details::details-content {
+    overflow: clip;
+    block-size: 0;
+    opacity: 0;
+    transition:
+      block-size var(--dur-base) var(--ease-saida),
+      opacity var(--dur-base) var(--ease-saida),
+      content-visibility var(--dur-base) allow-discrete;
+  }
+
+  details[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    details::details-content {
+      transition: none;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   summary::after {
     transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .oculto {
+    opacity: 1;
+    transform: none;
+  }
+
+  summary:active,
+  .contact-action:active,
+  summary:hover .category-icon {
+    transform: none;
   }
 }
 
